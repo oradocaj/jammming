@@ -1,7 +1,17 @@
 import React from 'react';
+
 import './Track.css';
 
 export default class Track extends React.Component {
+    
+    renderAction () {
+        if (this.props.isRemoval) {
+            return <button>-</button>
+        } else {
+            return <button>+</button>
+        }
+    }
+
     render() {
         return (
             <div className="Track">
@@ -12,9 +22,5 @@ export default class Track extends React.Component {
                 <button className="Track-action">{/* + or - will go here */}</button>
             </div>
         );
-    }
-
-    renderAction () {
-
     }
 };
