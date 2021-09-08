@@ -6,6 +6,10 @@ import SearchResults from './Components/SearchResults/SearchResults.js';
 import Playlist from './Components/Playlist/Playlist';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state.SearchResults
+  }
   render() {
     return (
       <div>
