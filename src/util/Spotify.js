@@ -1,5 +1,5 @@
 const clientId = '11b518e4920b4371902130855ed0b8a5';
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "http://jammming-oradocaj.surge.sh/";
 let accessToken;
 
 const Spotify = {
