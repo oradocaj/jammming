@@ -1,5 +1,5 @@
 const clientId = '11b518e4920b4371902130855ed0b8a5';
-const redirectUri = "http://jammming-oradocaj.surge.sh/";
+const redirectUri = "http://oradocaj.github.io/jammming/";
 let accessToken;
 
 const Spotify = {
