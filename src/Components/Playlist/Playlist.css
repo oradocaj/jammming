@@ -44,7 +44,12 @@
     width: 0px;
     background: transparent;
 }
-  
+.Track {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+}
+
 @media only screen and (max-width: 1020px) {
   .Playlist {
     width: 90%;
