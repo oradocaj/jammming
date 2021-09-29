@@ -1,5 +1,6 @@
 import React from 'react';
 
+import '../Track/Track.css';
 import './TrackList.css';
 import Track from '../Track/Track';
 
