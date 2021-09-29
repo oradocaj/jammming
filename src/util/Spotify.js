@@ -1,5 +1,5 @@
 const clientId = '11b518e4920b4371902130855ed0b8a5';
-const redirectUri = "http://oradocaj.github.io/jammming/";
+const redirectUri = "http://oradocaj.github.io/jammming/" //"http://localhost:3000/";
 let accessToken;
 
 const Spotify = {
@@ -44,7 +44,7 @@ const Spotify = {
                     album: track.album.name,
                     uri: track.uri
                 }));
-            };
+            }
         });
     },
 
