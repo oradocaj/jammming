@@ -25,7 +25,7 @@ const Spotify = {
         }
     },
 
-    async search(term, headers) {
+    async search(term) {
         const accessToken = Spotify.getAccessToken();
         const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: {
