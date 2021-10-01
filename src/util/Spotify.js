@@ -47,30 +47,6 @@ const Spotify = {
         });
     },
 
-    /*search(term) {
-        return new Promise((resolve, reject) => {
-            fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            }).then(response => {
-                return response.json();
-            }).then(jsonResponse => {
-                resolve(jsonResponse)
-                jsonResponse.tracks.items.map(track => ({
-                    id: track.id,
-                    name: track.name,
-                    artist: track.artists[0].name,
-                    album: track.album.name,
-                    uri: track.uri
-                })).catch(error => {
-                    reject(error)
-                });
-            });
-        }
-    
-    },*/
-
     savePlaylist(name, trackUris) {
         if (!name || !trackUris.length) {
           return;
