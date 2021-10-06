@@ -4,6 +4,7 @@ let accessToken;
 
 const Spotify = {
     getAccessToken() {
+
         if (accessToken) {
             return accessToken;
         }
@@ -13,45 +14,56 @@ const Spotify = {
         const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
         if (accessTokenMatch && expiresInMatch) {
-            //console.log('if condition fulfilled');
+            console.log('if condition fulfilled');
             accessToken = accessTokenMatch[1];
             const expiresIn = Number(expiresInMatch[1]);
             // This clears the parameters, allowing us to grab a new access token when it expires.
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/');
             return accessToken;
+
         } else {
-            /*const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;            
-            window.location = accessUrl;*/
-            //console.log('Else condition fulfilled');
+            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;            
+            window.location = accessUrl;
+            console.log('Else condition fulfilled');
         }
     },
 
-    async search(term) {
-        console.log('I am clicked');
-        try {
-            const accessToken = Spotify.getAccessToken();
-            const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            });
-            const jsonResponse = await response.json();
-            if (!jsonResponse.tracks) {
-                return [];
+    /*accessT () {        
+        const accessToken = Spotify.getAccessToken();
+        const response = fetch(`https://api.spotify.com/v1/me`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
             }
+        });
+
+        const jsonResponse = response.json();
+        console.log(jsonResponse)
+    },*/
+
+    async search(term) {
+        
+        const accessToken = Spotify.getAccessToken();
+        const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        
+        const jsonResponse = await response.json();
+        
+        if (jsonResponse.tracks) {
             return jsonResponse.tracks.items.map(track => ({
                 id: track.id,
                 name: track.name,
                 artist: track.artists[0].name,
                 album: track.album.name,
                 uri: track.uri
-            }));
-            
-        } catch (error) {
-            //console.error(error)
-            console.log('catch');
-        }    
+            }))
+        } else {
+            return [];
+        }
+        
     },
 
     async savePlaylist(name, trackUris) {
