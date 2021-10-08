@@ -1,15 +1,14 @@
 const clientId = '11b518e4920b4371902130855ed0b8a5';
-const redirectUri = "http://localhost:3000/" //"http://oradocaj.github.io/jammming/";
+const redirectUri = "http://oradocaj.github.io/jammming/" //"http://localhost:3000/";
 let accessToken;
 
 const Spotify = {
     getAccessToken() {
-
         if (accessToken) {
             return accessToken;
         }
 
-        // check for access token match
+        // Check for access token match with the help of regular expression.
         const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
         const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
@@ -28,21 +27,8 @@ const Spotify = {
             console.log('Else condition fulfilled');
         }
     },
-
-    /*accessT () {        
-        const accessToken = Spotify.getAccessToken();
-        const response = fetch(`https://api.spotify.com/v1/me`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-
-        const jsonResponse = response.json();
-        console.log(jsonResponse)
-    },*/
-
-    async search(term) {
-        
+   
+    async search(term) {        
         const accessToken = Spotify.getAccessToken();
         const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: {
@@ -59,7 +45,7 @@ const Spotify = {
                 artist: track.artists[0].name,
                 album: track.album.name,
                 uri: track.uri
-            }))
+            }));
         } else {
             return [];
         }
